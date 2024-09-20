@@ -20,3 +20,4 @@
 
 ## 注意事项
 * 非 App-nvue 平台暂不支持下拉刷新
+# Use Uniapp run Project to androin and IOS
