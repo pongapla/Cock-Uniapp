@@ -1,0 +1,169 @@
+<template>
+	<div>
+		<uniHeader></uniHeader>
+		<view class="u-waterfall u-p-16"  style="max-height: 70vh; overflow-y: auto;">
+			<list ref="list" loadmoreoffset="100" @loadmore="loadmore">
+			    <view v-for="list in lists" :key="list.id"  @click="goToDetail(list)">
+					<view class="cover-list">
+						<view class="uer-name">{{ list }}</view> 
+					</view>
+			    </view>
+			</list>
+		</view>
+		<uniTabbar></uniTabbar>
+	</div>
+</template>
+
+<script>
+	import uniHeader from "@/components/uni-header.vue";
+	import uniTabbar from "@/components/uni-tabbar.vue";
+export default {
+	components: {
+		uniTabbar,
+		uniHeader
+		},
+    data() {
+        return {
+			check: false,
+            background: ['color1', 'color2', 'color3'],
+            indicatorDots: true,
+            autoplay: true,
+            interval: 2000,
+            duration: 600,
+			nodes: [{
+			    name: 'div',
+			    attrs: {
+					s: 'div-class',
+					style: 'line-height: 60px; color: red; text-align:center;'
+			    },
+			    children: [{
+			        type: 'text',
+			        text: 'Hello&nbsp;uni-app!'
+			    }]
+			}],
+			lists: [
+				{
+				id: 1,
+				name: 'A',
+				detail: 'aaa',
+				date: '2024-08-08',
+				view: '400'
+				},
+				{
+				id: 2,
+				name: 'B',
+				detail: 'BBB',
+				date: '2024-08-08',
+				view: '400'
+				},
+				{
+				id: 3,
+				name: 'C',
+				detail: 'ccc',
+				date: '2024-08-08',
+				view: '400'
+				},
+				{
+				id: 4,
+				name: 'D',
+				detail: 'dddd',
+				date: '2024-08-08',
+				view: '400'
+				},
+				{
+				id: 5,
+				name: 'F',
+				detail: 'fff',
+				date: '2024-08-08',
+				view: '400'
+				},
+				{
+				id: 6,
+				name: 'G',
+				detail: 'gggg',
+				date: '2024-08-08',
+				view: '400'
+				},
+			]
+        }
+    },
+    methods: {
+        changeIndicatorDots(e) {
+            this.indicatorDots = !this.indicatorDots
+        },
+        changeAutoplay(e) {
+            this.autoplay = !this.autoplay
+        },
+        intervalChange(e) {
+            this.interval = e.target.value
+        },
+        durationChange(e) {
+            this.duration = e.target.value
+        },
+		resetLoadMore() {
+		    this.$refs["list"].resetLoadmore();
+		},
+		loadmore(){
+		    console.log("loadmore事件触发");
+		    this.lists.push('1');
+		},
+		goToDetail(item) {
+		      // นำทางไปยังหน้าที่ต้องการ พร้อมกับส่งข้อมูลไปใน URL
+		    const queryString = encodeURIComponent(JSON.stringify(item));
+		        uni.navigateTo({
+		        url: `/pages/news/detail?data=${queryString}`
+		    });
+		}
+    }
+}
+</script>
+<style>
+	.cover-list{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.uer-name{
+		border: 1px solid red;
+		border-radius: 5px;
+		padding: 10px;
+		height: 100px;
+		margin-bottom: 5px;
+	}
+	.uni-margin-wrap {
+		width: 690rpx;
+		width: 100%;
+	}
+	.swiper {
+		height: 300rpx;
+		margin-top: 10px;
+	}
+	.swiper-item {
+		display: block;
+		height: 300rpx;
+		line-height: 300rpx;
+		text-align: center;
+	}
+	.swiper-list {
+		margin-top: 40rpx;
+		margin-bottom: 0;
+	}
+	.uni-common-mt {
+		margin-top: 60rpx;
+		position: relative;
+	}
+	.info {
+		position: absolute;
+		right: 20rpx;
+	}
+	.uni-padding-wrap {
+		width: 550rpx;
+		padding: 0 100rpx;
+	}
+	.head-box {
+	  position: -webkit-sticky;
+	  position: sticky;
+	  top: 10;
+	  z-index: 998;
+	  background: #fff;
+	}
+</style>

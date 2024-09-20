@@ -1,0 +1,28 @@
+{
+  "pages": [
+	{
+      "path": "pages/news/index",
+      "style": { "navigationStyle": "custom" }
+    },
+    {
+      "path": "pages/news/detail",
+      "style": { "navigationStyle": "custom" }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "ทดสอบ",
+    "navigationBarBackgroundColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF",
+	"navigationStyle": "custom"
+  },
+  "rightWindow": {
+    "path": "responsive/right-window.vue",
+    "style": {
+      "width": "calc(100vw - 450px)"
+    },
+    "matchMedia": {
+      "minWidth": 768
+    }
+  }
+}
